@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<String> labels = ["Apples", "Bananas", "Oranges", "Papayas"];
-  int currentIndex = 0;
+  int currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ToggleBar(
               labels: labels,
+              selectedIndex: 1,
               backgroundColor: Colors.grey,
               onSelectionUpdated: (index) =>
                   setState(() => currentIndex = index),

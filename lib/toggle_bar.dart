@@ -13,6 +13,9 @@ class ToggleBar extends StatefulWidget {
   /// TextStyle for the labels.
   final TextStyle labelTextStyle;
 
+  /// Initial selected index
+  final int selectedIndex;
+
   /// Background color of the toggle bar.
   final Color backgroundColor;
 
@@ -40,6 +43,7 @@ class ToggleBar extends StatefulWidget {
   ToggleBar(
       {required this.labels,
       this.backgroundColor = Colors.black,
+      this.selectedIndex = 0,
       this.backgroundBorder,
       this.selectedTabColor = Colors.deepPurple,
       this.selectedTextColor = Colors.white,
@@ -60,9 +64,13 @@ class _ToggleBarState extends State<ToggleBar> {
 
   @override
   void initState() {
+    _selectedIndex = widget.selectedIndex;
     _hashMap = LinkedHashMap.fromIterable(widget.labels,
         value: (value) => value = false);
     _hashMap[widget.labels[0]] = true;
+
+    _hashMap.updateAll((label, selected) => selected = false);
+    _hashMap[_hashMap.keys.elementAt(widget.selectedIndex)] = true;
 
     super.initState();
   }
